@@ -1,0 +1,18 @@
+body {
+  padding: 0;
+  margin: 0;
+  background: linear-gradient(to right, #00aaff, #00ff6c);
+  font-family: "Rubik", sans-serif;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: center;
+}
+
+img {
+  width: 50%;
+  margin: 5% auto 10%;
+}
