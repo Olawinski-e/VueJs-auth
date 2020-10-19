@@ -1,8 +1,18 @@
 <template>
   <div class="login">
     <h3 class="mb-4">Sign In</h3>
-    <input type="text" placeholder="Email" class="form-control mb-4" />
-    <input type="password" placeholder="Password" class="form-control mb-4" />
+    <input
+      type="text"
+      v-model="email"
+      placeholder="Email"
+      class="form-control mb-4"
+    />
+    <input
+      type="password"
+      v-model="password"
+      placeholder="Password"
+      class="form-control mb-4"
+    />
     <button @click="login" class="btn btn-info mb-4">Connection</button>
     <p>
       You don't have an account ? You can
@@ -12,14 +22,34 @@
 </template>
 
 <script>
+import firebase from "firebase";
+
 export default {
   name: "Login",
   data() {
-    return {};
+    return {
+      email: "",
+      password: "",
+    };
   },
   methods: {
     login() {
-      this.$router.replace("home");
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then(
+          function(user) {
+            alert(
+              "Well done" +
+                JSON.stringify(user.user.email) +
+                "! You are now connected"
+            );
+            this.$router.replace("home");
+          },
+          function(err) {
+            alert("Oops," + err.message);
+          }
+        );
     },
   },
 };
