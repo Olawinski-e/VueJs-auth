@@ -41,11 +41,8 @@ export default {
         this.loading = false;
         querySnapshot.forEach((doc) => {
           let data = {
-            id: doc.id,
-            firstname: doc.data().firstname,
-            lastname: doc.data().lastname,
-            emailaddress: doc.data().emailaddress,
-            phonenumber: doc.data().phonenumber,
+            personEmail: doc.data().emailaddress,
+            role: doc.data().role,
             slug: doc.data().slug,
           };
           this.people.push(data);
