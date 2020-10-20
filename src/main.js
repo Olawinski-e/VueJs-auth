@@ -1,6 +1,6 @@
 import Vue from "vue";
 import App from "./App.vue";
-import config from "./config.js";
+import firebaseConfig from "./firebaseConfig.js";
 import firebase from "firebase";
 
 import "./assets/scss/index.scss";
@@ -18,7 +18,7 @@ let app = "";
 firebase.auth().onAuthStateChanged(() => {
   if (!app) {
     app = new Vue({
-      config,
+      firebaseConfig,
       router,
       render: (h) => h(App),
     }).$mount("#app");

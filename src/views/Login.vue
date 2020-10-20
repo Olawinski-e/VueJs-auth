@@ -4,12 +4,14 @@
     <input
       type="text"
       v-model="email"
+      name="email"
       placeholder="Email"
       class="form-control mb-4"
     />
     <input
       type="password"
       v-model="password"
+      name="password"
       placeholder="Password"
       class="form-control mb-4"
     />
@@ -34,6 +36,7 @@ export default {
   },
   methods: {
     login() {
+      let self = this;
       firebase
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
@@ -44,7 +47,7 @@ export default {
                 JSON.stringify(user.user.email) +
                 "! You are now connected"
             );
-            this.$router.replace("home");
+            self.$router.replace("home");
           },
           function(err) {
             alert("Oops," + err.message);
